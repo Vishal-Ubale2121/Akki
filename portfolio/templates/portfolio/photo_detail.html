@@ -1,0 +1,141 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ photo.title }} - PhotoArt{% endblock %}
+
+{% block content %}
+<!-- Photo Detail Header -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'portfolio:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'portfolio:portfolio' %}">Portfolio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ photo.title }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Photo Detail Content -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Main Photo -->
+            <div class="col-lg-8 mb-5">
+                <div class="card border-0 shadow">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="img-fluid rounded">
+                </div>
+            </div>
+            
+            <!-- Photo Information -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-4">
+                        <h1 class="h2 mb-3">{{ photo.title }}</h1>
+                        
+                        {% if photo.description %}
+                        <p class="text-muted mb-4">{{ photo.description }}</p>
+                        {% endif %}
+                        
+                        <div class="mb-4">
+                            <h6 class="text-primary mb-2">Category</h6>
+                            <span class="badge bg-primary">{{ photo.category.name }}</span>
+                        </div>
+                        
+                        {% if photo.location %}
+                        <div class="mb-4">
+                            <h6 class="text-primary mb-2">Location</h6>
+                            <p class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>{{ photo.location }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        {% if photo.date_taken %}
+                        <div class="mb-4">
+                            <h6 class="text-primary mb-2">Date Taken</h6>
+                            <p class="mb-0"><i class="fas fa-calendar me-2"></i>{{ photo.date_taken|date:"F j, Y" }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        {% if photo.camera_settings %}
+                        <div class="mb-4">
+                            <h6 class="text-primary mb-2">Camera Settings</h6>
+                            <p class="mb-0"><i class="fas fa-camera me-2"></i>{{ photo.camera_settings }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="mb-4">
+                            <h6 class="text-primary mb-2">Added to Portfolio</h6>
+                            <p class="mb-0"><i class="fas fa-clock me-2"></i>{{ photo.created_at|date:"F j, Y" }}</p>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'portfolio:contact' %}" class="btn btn-primary btn-lg">
+                                <i class="fas fa-envelope me-2"></i>Inquire About This Photo
+                            </a>
+                            <a href="{% url 'portfolio:portfolio' %}" class="btn btn-outline-primary">
+                                <i class="fas fa-images me-2"></i>View More Photos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Photos -->
+{% if related_photos %}
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-5">Related Photos</h2>
+            </div>
+        </div>
+        
+        <div class="photo-grid">
+            {% for related_photo in related_photos %}
+            <div class="photo-item">
+                <img src="{{ related_photo.image.url }}" alt="{{ related_photo.title }}">
+                <div class="photo-overlay">
+                    <h5>{{ related_photo.title }}</h5>
+                    <p class="mb-2">{{ related_photo.description|truncatewords:10 }}</p>
+                    <a href="{% url 'portfolio:photo_detail' related_photo.id %}" class="btn btn-sm btn-primary">View Details</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'portfolio:portfolio' %}?category={{ photo.category.id }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-images me-2"></i>View All {{ photo.category.name }} Photos
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Call to Action -->
+<section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-4 fw-bold mb-3">Love This Style?</h2>
+                <p class="lead mb-4">Book a session with us to create your own stunning photographs.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'portfolio:contact' %}" class="btn btn-light btn-lg">
+                        <i class="fas fa-calendar me-2"></i>Book Session
+                    </a>
+                    <a href="{% url 'portfolio:services' %}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

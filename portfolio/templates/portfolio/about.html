@@ -1,0 +1,181 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}About Us - PhotoArt{% endblock %}
+
+{% block content %}
+<!-- About Header -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-3">About PhotoArt</h1>
+                <p class="lead text-muted">Passionate photographers dedicated to capturing life's precious moments</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                     alt="Photographer at work" class="img-fluid rounded-3 shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">Our Story</h2>
+                <p class="lead mb-4">Founded with a passion for visual storytelling, PhotoArt has been capturing life's beautiful moments for over a decade.</p>
+                <p class="mb-4">We believe that every photograph tells a story, and we're committed to creating images that not only capture the moment but also evoke emotions and preserve memories for generations to come.</p>
+                <p>Our team of experienced photographers combines technical expertise with artistic vision to deliver exceptional results that exceed expectations.</p>
+            </div>
+        </div>
+        
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 order-lg-2 mb-4">
+                <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                     alt="Photography equipment" class="img-fluid rounded-3 shadow">
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <h2 class="mb-4">Our Approach</h2>
+                <p class="lead mb-4">We take a personalized approach to every project, understanding that each client has unique vision and requirements.</p>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-primary me-3"></i>
+                            <span>Professional Equipment</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-primary me-3"></i>
+                            <span>Creative Vision</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-primary me-3"></i>
+                            <span>Attention to Detail</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-primary me-3"></i>
+                            <span>Timely Delivery</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-camera fa-3x text-primary mb-3"></i>
+                        <h2 class="display-4 fw-bold text-primary">500+</h2>
+                        <p class="text-muted">Photos Captured</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-heart fa-3x text-primary mb-3"></i>
+                        <h2 class="display-4 fw-bold text-primary">100+</h2>
+                        <p class="text-muted">Happy Clients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-award fa-3x text-primary mb-3"></i>
+                        <h2 class="display-4 fw-bold text-primary">10+</h2>
+                        <p class="text-muted">Years Experience</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-star fa-3x text-primary mb-3"></i>
+                        <h2 class="display-4 fw-bold text-primary">5.0</h2>
+                        <p class="text-muted">Average Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+{% if testimonials %}
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-4 fw-bold mb-3">What Our Clients Say</h2>
+                <p class="lead text-muted">Don't just take our word for it - hear from our satisfied clients</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-4">
+                    <div class="card-body text-center">
+                        {% if testimonial.photo %}
+                        <img src="{{ testimonial.photo.url }}" alt="{{ testimonial.name }}" 
+                             class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;">
+                        {% else %}
+                        <i class="fas fa-user-circle fa-3x text-primary mb-3"></i>
+                        {% endif %}
+                        <div class="mb-3">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= testimonial.rating %}
+                                    <i class="fas fa-star text-warning"></i>
+                                {% else %}
+                                    <i class="far fa-star text-warning"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="card-text fst-italic">"{{ testimonial.content }}"</p>
+                        <h6 class="card-title mb-1">{{ testimonial.name }}</h6>
+                        {% if testimonial.position and testimonial.company %}
+                        <small class="text-muted">{{ testimonial.position }} at {{ testimonial.company }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Call to Action -->
+<section class="section-padding" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-4 fw-bold mb-3">Ready to Work Together?</h2>
+                <p class="lead mb-4">Let's discuss your photography project and create something amazing together.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'portfolio:portfolio' %}" class="btn btn-light btn-lg">
+                        <i class="fas fa-images me-2"></i>View Our Work
+                    </a>
+                    <a href="{% url 'portfolio:contact' %}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
