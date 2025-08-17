@@ -1070,11 +1070,12 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+{% load static %}
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{% url 'portfolio:home' %}">
-                <i class="fas fa-camera"></i> PhotoArt
+                <i class="fas fa-camera"></i> AkkiCreation
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -1113,7 +1114,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5 class="mb-3">PhotoArt</h5>
+                    <h5 class="mb-3">AkkiCreation</h5>
                     <p>Capturing life's beautiful moments through the lens of creativity and passion.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -1133,14 +1134,14 @@
                 </div>
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3">Contact Info</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> 123 Photo Street, City, Country</p>
-                    <p><i class="fas fa-phone me-2"></i> +1 234 567 8900</p>
-                    <p><i class="fas fa-envelope me-2"></i> info@photoart.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Madha, Solapur</p>
+                    <p><i class="fas fa-phone me-2"></i> +91 8530838781</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@AkkiCreation.com</p>
                 </div>
             </div>
             <hr class="my-4">
             <div class="text-center">
-                <p>&copy; 2025 PhotoArt. All rights reserved.</p>
+                <p>&copy; 2025 AkkiCreation. All rights reserved.</p>
             </div>
         </div>
     </footer>

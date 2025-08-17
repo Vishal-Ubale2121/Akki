@@ -16,9 +16,9 @@ if [ ! -f "app.yaml" ]; then
     exit 1
 fi
 
-# Create staticfiles directory if it doesn't exist
+# Create static directory if it doesn't exist
 echo "📁 Creating staticfiles directory..."
-mkdir -p staticfiles
+mkdir -p static
 
 # Collect static files
 echo "📦 Collecting static files..."

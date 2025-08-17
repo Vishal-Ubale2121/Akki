@@ -19,7 +19,7 @@ ALLOWED_HOSTS = [
 
 # Static files configuration for App Engine
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Media files configuration
 MEDIA_URL = '/media/'
@@ -46,7 +46,7 @@ DATABASES = {
 }
 
 # Static files storage
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.static.storage.StaticFilesStorage'
 
 # Logging configuration for App Engine
 LOGGING = {

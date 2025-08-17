@@ -11,7 +11,7 @@ env_variables:
 
 handlers:
 - url: /static
-  static_dir: staticfiles
+  static_dir: static
 
 - url: /media
   static_dir: media
