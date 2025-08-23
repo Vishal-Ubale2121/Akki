@@ -27,11 +27,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # or however you control dev vs prod
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://akkiocreation-ewazgbgwh9cpdbaj.centralus-01.azurewebsites.net",
-    "http://localhost:8000"
+ALLOWED_HOSTS = [
+    "akkiocreation-ewazgbgwh9cpdbaj.centralus-01.azurewebsites.net",
+    "localhost",
+    "127.0.0.1"
 ]
-
 
 # Application definition
 
