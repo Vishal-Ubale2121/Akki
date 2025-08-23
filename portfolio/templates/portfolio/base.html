@@ -1099,6 +1099,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'portfolio:contact' %}">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'portfolio:admin' %}">Admin</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="{% url 'portfolio:admin_logout' %}">Logout</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

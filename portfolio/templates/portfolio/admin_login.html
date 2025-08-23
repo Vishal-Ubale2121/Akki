@@ -1,0 +1,39 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Contact Us - AkkiCreation{% endblock %}
+
+{% block content %}
+<!-- Contact Section -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow mt-4">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="mb-4" style="font-family: inherit; color: #fff;">Admin User Login</h5>
+                        <div class="login-container">
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    <div class="alert alert-danger py-2">{{ msg }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            <form method="post" action="{% url 'portfolio:admin_login' %}">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <input type="text" name="username" class="form-control" placeholder="Username" required
+       style="font-family: inherit; background-color: transparent; color: #fff; border: 1px solid #fff;">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required
+       style="font-family: inherit; background-color: transparent; color: #fff; border: 1px solid #fff;">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100" style="font-family: inherit;">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

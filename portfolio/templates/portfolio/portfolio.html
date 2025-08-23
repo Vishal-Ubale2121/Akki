@@ -21,82 +21,76 @@
         <div class="row">
             <div class="col-12">
                 <div class="text-center mb-5">
-                    <div class="btn-group" role="group">
-                        <a href="{% url 'portfolio:portfolio' %}" 
-                           class="btn {% if not selected_category %}btn-primary{% else %}btn-outline-primary{% endif %}">
-                            All
-                        </a>
-                        {% for category in categories %}
-                        <a href="?category={{ category.id }}" 
-                           class="btn {% if selected_category.id == category.id %}btn-primary{% else %}btn-outline-primary{% endif %}">
-                            {{ category.name }}
-                        </a>
-                        {% endfor %}
-                    </div>
+                   <!-- Portfolio Cards Section -->
+                    <section class="section-padding">
+                        <div class="container">
+                            <div class="row justify-content-center align-items-stretch">
+                                <!-- Potrait Photography Card -->
+                                <div class="col-md-4 mb-4 d-flex">
+                                    <div class="card shadow text-center h-100 w-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-user fa-3x mb-3 text-primary"></i>
+                                            <h5 class="card-title mb-3">Potrait Photography</h5>
+                                            <p class="card-text">Capturing stunning portraits for every occasion.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Wedding Photography Card -->
+                                <div class="col-md-4 mb-4 d-flex">
+                                    <div class="card shadow text-center h-100 w-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-heart fa-3x mb-3 text-primary"></i>
+                                            <h5 class="card-title mb-3">Wedding Photography</h5>
+                                            <p class="card-text">Memorable moments from your special day.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Baby Shower Card -->
+                                <div class="col-md-4 mb-4 d-flex">
+                                    <div class="card shadow text-center h-100 w-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-baby fa-3x mb-3 text-primary"></i>
+                                            <h5 class="card-title mb-3">Baby Shower</h5>
+                                            <p class="card-text">Cherishing the joy of new beginnings.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Outdoor Card -->
+                                <div class="col-md-4 mb-4 d-flex">
+                                    <div class="card shadow text-center h-100 w-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-tree fa-3x mb-3 text-primary"></i>
+                                            <h5 class="card-title mb-3">Outdoor</h5>
+                                            <p class="card-text">Beautiful outdoor photography sessions.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Indoor Card -->
+                                <div class="col-md-4 mb-4 d-flex">
+                                   <div class="card shadow text-center h-100 w-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-home fa-3x mb-3 text-primary"></i>
+                                            <h5 class="card-title mb-3">Indoor</h5>
+                                            <p class="card-text">Creative indoor photography experiences.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Classic Card -->
+                                <div class="col-md-4 mb-4 d-flex">
+                                    <div class="card shadow text-center h-100 w-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-camera-retro fa-3x mb-3 text-primary"></i>
+                                            <h5 class="card-title mb-3">Classic</h5>
+                                            <p class="card-text">Timeless classic photography styles.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-        
-        <!-- Photo Grid -->
-        {% if page_obj %}
-        <div class="photo-grid">
-            {% for photo in page_obj %}
-            <div class="photo-item">
-                <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
-                <div class="photo-overlay">
-                    <h5>{{ photo.title }}</h5>
-                    <p class="mb-2">{{ photo.description|truncatewords:15 }}</p>
-                    {% if photo.location %}
-                    <p class="mb-2"><i class="fas fa-map-marker-alt me-1"></i>{{ photo.location }}</p>
-                    {% endif %}
-                    <a href="{% url 'portfolio:photo_detail' photo.id %}" class="btn btn-sm btn-primary">View Details</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        
-        <!-- Pagination -->
-        {% if page_obj.has_other_pages %}
-        <nav aria-label="Portfolio pagination" class="mt-5">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category.id }}{% endif %}">
-                        <i class="fas fa-chevron-left"></i> Previous
-                    </a>
-                </li>
-                {% endif %}
-                
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                    <li class="page-item active">
-                        <span class="page-link">{{ num }}</span>
-                    </li>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ num }}{% if selected_category %}&category={{ selected_category.id }}{% endif %}">{{ num }}</a>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-                
-                {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category.id }}{% endif %}">
-                        Next <i class="fas fa-chevron-right"></i>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
-        
-        {% else %}
-        <div class="text-center">
-            <i class="fas fa-images fa-5x text-muted mb-4"></i>
-            <h3 class="text-muted">No photos found</h3>
-            <p class="text-muted">{% if selected_category %}No photos in this category yet.{% else %}No photos available yet.{% endif %}</p>
-        </div>
-        {% endif %}
     </div>
 </section>
 

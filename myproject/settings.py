@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-your-secret-key-here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # or however you control dev vs prod
+DEBUG = True  # or however you control dev vs prod
 
 ALLOWED_HOSTS = ["*"]
 
@@ -78,12 +78,28 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', 'sqlite:///' + str(BASE_DIR / 'db.sqlite3'))
-    )
-}
+# Local Database
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL', 'sqlite:///' + str(BASE_DIR / 'db.sqlite3'))
+#     )
+# }
 
+# Azure SQL Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',
+        'NAME': 'akki_db',
+        'USER': 'vish2121',
+        'PASSWORD': 'Admin@2121',
+        'HOST': 'akkicreation.database.windows.net',
+        'PORT': '1433',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
