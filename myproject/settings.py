@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +31,17 @@ ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = [
     "https://akkiocreation-ewazgbgwh9cpdbaj.centralus-01.azurewebsites.net"
 ]
+
+# Make Django aware of HTTPS behind Azure’s proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Ensure cookies work over HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# In case cross-site requests are needed (e.g. custom domain)
+CSRF_COOKIE_SAMESITE = "Lax"  # or "None" if you’re using an iframe / cross-domain
+
 
 # Application definition
 

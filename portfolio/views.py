@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Photo, Category, Contact, Testimonial
 from .forms import ContactForm
+# from .models import PortfolioSection, Photo
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -132,3 +133,12 @@ def admin_dashboard(request):
 def admin_logout(request):
     logout(request)
     return redirect('portfolio:admin_login')
+
+
+# def upload_photo(request):
+#     if request.method == 'POST':
+#         section_name = request.POST['section']
+#         photo_file = request.FILES['photo']
+#         section = PortfolioSection.objects.get(name=section_name)
+#         Photo.objects.create(section=section, image=photo_file)
+#         return redirect('admin_dashboard')
